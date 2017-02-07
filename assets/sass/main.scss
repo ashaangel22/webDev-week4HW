@@ -1,0 +1,337 @@
+/* 
+==============================================
+CONTENT:	Project Name Here
+AUTHOR:		Your Name Here
+==============================================
+
+TABLE OF CONTENTS:
+
+1. Main Layout
+2. Content
+
+==============================================
+*/
+
+$color-main: #8888aa;
+$color-secondary: #aaaadd;
+$color-tertiary: #b9c77b;
+
+$column-1-3: 1 / 3 * 100%;
+$column-1-4: 1 / 4 * 100%;
+
+$gutter-width: 10px;
+
+$break-mobile: 640px;
+
+@mixin bp-small {
+	@media (max-width: $break-mobile) {
+		@content;
+	}
+}
+
+
+/* 1. Main Layout ================================= */
+
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+.patty {
+	position: absolute;
+	width: 50px;
+	height: 5px;
+	background: #dbb18b;
+}
+
+nav {
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	width: 70px;
+	height: 70px;
+
+	.hamburger {
+		@extend .patty;
+		top: 30px;
+		left: 10px;
+	}
+
+	.hamburger:before {
+		content: '';
+		@extend .patty;
+		top: -10px;
+		left: 0px;
+	}
+
+	.hamburger:after {
+		content: '';
+		@extend .patty;
+		top: 10px;
+		left: 0px;
+	}
+    
+    ul {
+    margin-top: 70px;
+    }
+
+    li {
+        color: aliceblue;
+        margin: 10px;
+        padding: 10px 0px;
+        width: 0;
+        background: rgba(30, 45, 5, 0.8);
+        white-space: nowrap; 
+        overflow: hidden;
+        transition: 0.2s;
+        transition-delay: 0.2s;
+
+        &:nth-child(2) {
+            transition-delay: 0.1s;
+        }
+        &:nth-child(3) {
+            transition-delay: 0s;
+        }
+    }
+    
+    &:hover {
+
+		li {
+			padding: 10px 20px;
+			width: 200px;
+			transition-delay: 0s;
+
+			&:nth-child(2) {
+			transition-delay: 0.1s;
+			}
+			&:nth-child(3) {
+			transition-delay: 0.2s;
+			}
+		}
+	}
+    
+}
+
+
+#scene {
+	width: 100%;
+	height: 900px;
+	background: #ccc;
+	overflow: hidden;
+
+	.layer {
+		width: 100%;
+		height: 100%;
+		border: 1px solid red;
+
+		.bg-image {
+			position: absolute;
+			width: 120%;
+			height: 120%;
+			transform: translate(-10%, -10%);
+			background-image: url('../img/background.png');
+			background-size: cover, auto;
+		}
+
+		&.middle {
+			h1 {
+				font-size: 2rem;
+				color: black;
+				font-weight: 700;
+				text-align: center;
+				position: absolute;
+				top: 40%;
+				left: 50%;
+				transform: translateX(-50%);
+			}
+		}
+
+		.fg-panel {
+			@extend .bg-image;
+			background-image: url('../img/foreground.png');
+		}
+	}
+}
+
+.main {
+	position: relative;
+    width: 100%;
+    height: 100%;
+    background: #d9e6f4;
+    box-shadow: 10px #000;
+}
+
+.fixed-button {
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	background: #e21d97;
+	text-align: center;
+	color: white;
+	border-radius: 10px 10px 0 0;
+	padding: 20px 40px;
+
+	&.hidden {
+		display: none;
+	}
+}
+
+.up-button {
+	@extend .fixed-button;
+}
+
+.down-button {
+	@extend .fixed-button;
+}
+
+%fixed-bg {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+.clear-bg {
+	@extend %fixed-bg;
+	background-image: url('../img/cave2.jpg');
+}
+
+.blur-bg {
+	@extend %fixed-bg;
+	background: #d9e6f4;
+    height: 500px;
+
+	h1 {
+		font-size: 2rem;
+		font-weight: 700;
+		position: absolute;
+		top: 50%;
+		text-align: center;
+	}
+}
+
+
+.widgets {
+	padding: 25px;
+
+	.column {
+		width: $column-1-3;
+		padding: $gutter-width;
+		float: left;
+	}
+
+	.widget-container {
+        margin-top: 20px;
+		width: 100%;
+		height: 300px;
+		background: #dbb18b;
+        
+            ul {
+                margin-top: 70px;
+            }
+
+            li {
+                margin: 10px;
+                padding: 10px 0px;
+                width: 0;
+                white-space: nowrap; 
+                overflow: hidden;
+                transition: 4s;
+                transition-delay: 0s;
+                
+                &:nth-child(1) {
+                    transition-delay: 1s;
+                }
+                &:nth-child(2) {
+                    transition-delay: 2s;
+                }
+                &:nth-child(3) {
+                    transition-delay: 3s;
+                }
+                &:nth-child(4) {
+                    transition-delay: 4s;
+                }
+                &:nth-child(5) {
+                    transition-delay: 5s;
+                }
+            }
+        
+            &:hover {
+
+            li {
+                padding: 10px 20px;
+                width: 200px;
+                transition-delay: 0s;
+
+                &:nth-child(1) {
+                    transition-delay: 1s;
+                }
+                &:nth-child(2) {
+                    transition-delay: 2s;
+                }
+                &:nth-child(3) {
+                    transition-delay: 3s;
+                }
+                &:nth-child(4) {
+                    transition-delay: 4s;
+                }
+                &:nth-child(5) {
+                    transition-delay: 5s;
+                }
+            }
+        }
+	}
+}
+
+.icon {
+	width: 50px;
+	height: 50px;
+	margin: 0 auto;
+	background: #b9c77b;
+}
+
+.icon-ring {
+	@extend .icon;
+
+	border-radius: 50px;
+	border: 5px solid $color-tertiary;
+	background: none;
+    transition: all 4s ease; 
+}
+
+.icon-ring:hover {
+	border: 0px;
+	background: $color-tertiary;
+}
+
+.moon {
+    width: 50px;
+	height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 0 15px 15px $color-tertiary;
+    transition: all 1s ease; 
+    margin: 0 auto;
+}
+
+.moon:hover{ 
+    box-shadow: 15px 15px 0 0 $color-tertiary;
+} 
+
+.icon-leaf {
+	@extend .icon;
+
+	border-radius: 0 50px 0 50px;
+    transition: all 2s ease; 
+}
+
+.icon-leaf:hover {
+    border-radius: 0 0px 0 0px;
+}
+
